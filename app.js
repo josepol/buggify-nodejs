@@ -12,7 +12,7 @@ const routingConfig = require('./config/routing.config');
 const expressConfig = require('./config/express.config');
 const passportConfig = require('./config/passport.config');
 
-// mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/buggify');
 
 const app = express();
 
