@@ -1,18 +1,30 @@
 'use strict'
 
 const winston = require('winston');
+const UserModel = require('./auth.model');
 
 const authDao = function() {
 
     this.login = (username) => {
         return new Promise((resolve, reject) => {
-            resolve({ username: 'jose', password: '$2b$08$zg5hk4FhRKLLaOjqrDHqvuSZcLjq8vuorZdgTMK0RRBmWLy0mxHAe' });
+            UserModel.findOne(username, (error, response) => {
+                if (error) {
+                    reject(error);
+                }
+                resolve(response);
+            });
         });
     }
 
     this.register = (user) => {
+        const userModel = new UserModel(user);
         return new Promise((resolve, reject) => {
-            resolve({valid: true});
+            userModel.save((error, response) => {
+                if (error) {
+                    reject(error);
+                }
+                resolve({valid: true});
+            });
         });
     }
 

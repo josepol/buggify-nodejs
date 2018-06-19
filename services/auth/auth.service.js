@@ -13,7 +13,7 @@ const authService = function() {
     
     this.login = (req, res, next) => {
         winston.info('Service :: auth :: login');
-        authDao.login(req.body.username).then(user => {
+        authDao.login({username: req.body.username}).then(user => {
             if (!bcrypt.compareSync(req.body.password, user.password)) {
                 res.status(401).send();
             }
