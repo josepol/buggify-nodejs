@@ -5,7 +5,7 @@ const UserModel = require('./auth.model');
 
 const authDao = function() {
 
-    this.login = (username) => {
+    this.login = username => {
         return new Promise((resolve, reject) => {
             UserModel.findOne(username, (error, response) => {
                 if (error) {
@@ -16,7 +16,7 @@ const authDao = function() {
         });
     }
 
-    this.register = (user) => {
+    this.register = user => {
         const userModel = new UserModel(user);
         return new Promise((resolve, reject) => {
             userModel.save((error, response) => {
@@ -24,6 +24,17 @@ const authDao = function() {
                     reject(error);
                 }
                 resolve({valid: true});
+            });
+        });
+    }
+
+    this.refresh = id => {
+        return new Promise((resolve, reject) => {
+            UserModel.findOne({ username: id }, (error, response) => {
+                if (!response || error) {
+                    reject(error);
+                }
+                resolve(response);
             });
         });
     }

@@ -11,9 +11,9 @@ const authService = new AuthService();
 
 router.post('/login', authService.login);
 router.post('/register', authService.register);
-router.get('/refresh', authMiddleware(), authService.refresh);
+router.get('/refresh', authService.refresh);
 
-router.get('/test', (req, res) => {
+router.get('/test', authMiddleware(), (req, res) => {
     winston.info('testing ok');
     res.send('testing ok')
 })

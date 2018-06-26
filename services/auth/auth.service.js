@@ -3,6 +3,7 @@
 const winston = require('winston');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const moment = require('moment');
 
 const passport = require('passport');
 const AuthDao = require('./auth.dao');
@@ -38,8 +39,30 @@ const authService = function() {
     }
 
     this.refresh = (req, res, next) => {
-        winston.info(req.user);
-        res.send(this.authDao.login());
+        winston.info('Service :: auth :: refresh');
+
+        const authorization = req.headers.authorization;
+        if (!authorization) {
+            res.status(403).send({ message: "No token" });
+        }
+        const bearerToken = authorization.split(' ')[1];
+        const payload = jwt.decode(bearerToken, 'SECRET_KEY');
+
+        if (payload.exp <= moment().unix()) {
+            res.status(401).send({ message: "Token expired" });
+        }
+
+        authDao.refresh(payload.id)
+        .then(user => {
+            let token = jwt.sign({ id: user._id, rol: user.rol }, 'SECRET_KEY', {
+                expiresIn: 1000000
+            });
+            res.status('200').send({ token, isAdmin: user.rol === 0 ? true : false });
+        })
+        .catch(error => {
+            res.status('401');
+            res.send(error);
+        });
     }
 }
 

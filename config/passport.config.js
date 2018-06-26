@@ -11,17 +11,17 @@ const authDao = new AuthDao();
 const passportConfig = () => {
 
     passport.use(new BearerStrategy((token, done) => {
-        /*User.findOne({ token }, (err, user) => {
+        User.findOne({ token }, (err, user) => {
             if (err) return done(err);
             if (!user) return done(null, false);
             return done(null, user, { scope: 'all' });
-        });*/
-        const user = authDao.login();
+        });
+        /*const user = authDao.login();
         if (user) {
             return done(null, user);
         } else {
             return done(null, false);
-        }
+        }*/
     }));
 }
 
