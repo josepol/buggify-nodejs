@@ -13,7 +13,7 @@ router.post('/login', authService.login);
 router.post('/register', authService.register);
 router.get('/refresh', authService.refresh);
 
-router.get('/test', authMiddleware(), (req, res) => {
+router.get('/test', (req, res) => {
     winston.info('testing ok');
     res.send('testing ok')
 })
