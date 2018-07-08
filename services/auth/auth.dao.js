@@ -23,7 +23,7 @@ const authDao = function() {
                 if (error) {
                     reject(error);
                 }
-                resolve({valid: true});
+                resolve(response);
             });
         });
     }

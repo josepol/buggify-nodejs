@@ -9,7 +9,7 @@ const basename  = path.basename(__filename);
 const env       = process.env.NODE_ENV || 'development';
 const db        = {};
 
-const sequelize = new Sequelize('sequelize', 'root', 'root', {
+const sequelize = new Sequelize('ibuggify', 'root', 'root', {
   host: 'localhost',
   dialect: 'mysql',
   operatorsAliases: false,

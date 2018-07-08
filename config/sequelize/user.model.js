@@ -7,6 +7,7 @@ const UserModel = (sequelize, DataTypes) => {
             defaultValue: DataTypes.UUIDV1,
             primaryKey: true
         },
+        mongodb_id: DataTypes.STRING,
         user_name: DataTypes.STRING,
         created_at: DataTypes.DATE
     });

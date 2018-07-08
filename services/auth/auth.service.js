@@ -7,10 +7,12 @@ const moment = require('moment');
 
 const passport = require('passport');
 const AuthDao = require('./auth.dao');
+const UserDao = require('../user/user.dao');
 
 const authService = function() {
 
     const authDao = new AuthDao();
+    const userDao = new UserDao();
     
     this.login = (req, res, next) => {
         winston.info('Service :: auth :: login');
@@ -33,7 +35,18 @@ const authService = function() {
             password: bcrypt.hashSync(req.body.password, 8)
         };
         authDao.register(user).then(response => {
-            res.send({status: response.valid});
+            const userParsed = {
+                mongodb_id: response.id,
+                user_name: user.username,
+                created_at: moment(new Date())
+            }
+            if (response.errors) {
+                throw new Error();
+            }
+            return userDao.create(userParsed)
+        })
+        .then(response => {
+            res.send({status: !!response.errors});
         })
         .catch(error => res.status(400).send());
     }
