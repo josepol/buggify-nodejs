@@ -46,7 +46,7 @@ const authService = function() {
             return userDao.create(userParsed)
         })
         .then(response => {
-            res.send({status: !!response.errors});
+            res.send({status: !response.errors});
         })
         .catch(error => res.status(400).send());
     }
