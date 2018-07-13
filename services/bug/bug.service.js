@@ -28,8 +28,8 @@ const bugService = function() {
             ...req.body,
             created_at: moment(new Date())
         }
-        this.bugDao.create(bug).then(() => res.send('OKK'))
-        .catch(error => res.send(error));
+        this.bugDao.create(bug).then(() => res.send({status: true}))
+        .catch(error => res.send({status: false}));
     }
 
     /*this.destroy = (req, res, next) => {
