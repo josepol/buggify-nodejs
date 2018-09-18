@@ -48,7 +48,9 @@ const authService = function() {
         .then(response => {
             res.send({status: !response.errors});
         })
-        .catch(error => res.status(400).send());
+        .catch(error => {
+            winston.error('Service :: auth :: register', error);
+            res.status(400).send({status: 0})});
     }
 
     this.refresh = (req, res, next) => {

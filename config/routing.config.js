@@ -9,8 +9,8 @@ const bugRouting = require('../services/bug/bug.routing');
  
 const routingConfig = (app) => {
   registerAPIEndpoints(app);
-  registerNotFoundHandler(app);
-  registerErrorHandler(app);
+  /*registerNotFoundHandler(app);
+  registerErrorHandler(app);*/
 };
 
 const registerAPIEndpoints = (app) => {
