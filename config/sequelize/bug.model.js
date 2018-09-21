@@ -7,11 +7,13 @@ const BugModel = (sequelize, DataTypes) => {
             defaultValue: DataTypes.UUIDV1,
             primaryKey: true
         },
+        // user_id: DataTypes.UUID,
         created_at: DataTypes.DATE,
         title: DataTypes.STRING,
         author: DataTypes.STRING,
         description: DataTypes.STRING,
-        solution: DataTypes.STRING
+        solution: DataTypes.STRING,
+        user_mongodb_id: DataTypes.STRING
     });
 
     return Bug;

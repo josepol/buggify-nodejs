@@ -6,12 +6,12 @@ const sequelize = require('../../config/sequelize');
 
 const bugDao = function() {
 
-    /*this.listAll = () => {
+    this.listAll = () => {
         winston.info('Dao :: users :: listAll');
-        return sequelize.User.findAll();
+        return sequelize.Bug.findAll();
     }
 
-    this.listOne = (id) => {
+    /*this.listOne = (id) => {
         winston.info('Dao :: users :: listOne');
         return sequelize.User.findOne({
             where: {id} 

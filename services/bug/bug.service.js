@@ -9,12 +9,12 @@ const bugService = function() {
 
     this.bugDao = new BugDao();
 
-    /*this.listAll = (req, res, next) => {
+    this.listAll = (req, res, next) => {
         winston.info('Service :: users :: listAll');
         this.userDao.listAll().then(allUsers => res.send(allUsers))
         .catch(error => res.send(error));
     }
-
+/*
     this.listOne = (req, res, next) => {
         winston.info('Service :: users :: listOne', req.params);
         const id = req.params.id;
@@ -26,7 +26,8 @@ const bugService = function() {
         winston.info('Service :: bug :: create');
         const bug = {
             ...req.body,
-            created_at: moment(new Date())
+            created_at: moment(new Date()),
+            user_mongodb_id: req.user.id
         }
         this.bugDao.create(bug).then(() => res.send({status: true}))
         .catch(error => res.send({status: false}));

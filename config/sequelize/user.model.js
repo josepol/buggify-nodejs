@@ -9,7 +9,8 @@ const UserModel = (sequelize, DataTypes) => {
         },
         mongodb_id: DataTypes.STRING,
         user_name: DataTypes.STRING,
-        created_at: DataTypes.DATE
+        created_at: DataTypes.DATE,
+        user_mongodb_id: DataTypes.STRING
     });
 
     return User;
