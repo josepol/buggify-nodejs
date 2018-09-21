@@ -6,9 +6,9 @@ const sequelize = require('../../config/sequelize');
 
 const bugDao = function() {
 
-    this.listAll = () => {
+    this.listAll = (id) => {
         winston.info('Dao :: users :: listAll');
-        return sequelize.Bug.findAll();
+        return sequelize.Bug.findAll({user_mongodb_id: id});
     }
 
     /*this.listOne = (id) => {

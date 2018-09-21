@@ -11,7 +11,7 @@ const bugService = function() {
 
     this.listAll = (req, res, next) => {
         winston.info('Service :: users :: listAll');
-        this.userDao.listAll().then(allUsers => res.send(allUsers))
+        this.bugDao.listAll(req.user.id).then(allUsers => res.send(allUsers))
         .catch(error => res.send(error));
     }
 /*
