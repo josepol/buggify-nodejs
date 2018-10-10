@@ -29,7 +29,17 @@ const bugService = function() {
             created_at: moment(new Date()),
             user_mongodb_id: req.user.id
         }
-        this.bugDao.create(bug).then(() => res.send({status: true}))
+        this.bugDao.create(bug).then((response) => res.send({status: true, id: response.id}))
+        .catch(error => res.send({status: false}));
+    }
+
+    this.createFile = (req, res, next) => {
+        winston.info('Service :: bug :: create');
+        const bug = {
+            ...req.body,
+            user_mongodb_id: req.user.id
+        }
+        this.bugDao.createFile(bug).then(() => res.send({status: true}))
         .catch(error => res.send({status: false}));
     }
 

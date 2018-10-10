@@ -11,6 +11,7 @@ const bugService = new BugService();
 router.get('/listAll', authMiddleware(), bugService.listAll);
 /*router.get('/listOne/:id', authMiddleware(), bugService.listOne);*/
 router.post('/create', authMiddleware(), bugService.create);
+router.post('/create-file', authMiddleware(), bugService.createFile);
 /*router.get('/destroy/:id', authMiddleware(), bugService.destroy);
 router.post('/update/:id', authMiddleware(), bugService.update);
 router.post('/transaction/:id1/:id2', authMiddleware(), bugService.update);*/

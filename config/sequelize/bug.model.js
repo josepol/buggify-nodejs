@@ -11,9 +11,11 @@ const BugModel = (sequelize, DataTypes) => {
         created_at: DataTypes.DATE,
         title: DataTypes.STRING,
         author: DataTypes.STRING,
+        category: DataTypes.STRING,
         description: DataTypes.STRING,
         solution: DataTypes.STRING,
-        user_mongodb_id: DataTypes.STRING
+        user_mongodb_id: DataTypes.STRING,
+        file: DataTypes.BLOB
     });
 
     return Bug;

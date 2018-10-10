@@ -23,6 +23,15 @@ const bugDao = function() {
         return sequelize.Bug.create(bug);
     }
 
+    this.createFile = (bug) => {
+        winston.info('Dao :: bugs :: create');
+        return sequelize.Bug.update({
+            file: bug.file
+        }, {
+            id: bug.id
+        });
+    }
+
     /*this.destroy = (id) => {
         winston.info('Dao :: users :: listOne');
         return sequelize.User.destroy({
