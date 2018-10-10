@@ -13,7 +13,7 @@ const config = () => {
  
   nconf.defaults({
     application: {
-      port: 3100
+      port: 3900
     }
   });
 
