@@ -15,4 +15,10 @@ router.get('/destroy/:id', authMiddleware(), userService.destroy);
 router.post('/update/:id', authMiddleware(), userService.update);
 router.post('/transaction/:id1/:id2', authMiddleware(), userService.update);
 
+router.get('/', (req, res, next) => {
+    return {
+        testing: true
+    }
+});
+
 module.exports = router;
