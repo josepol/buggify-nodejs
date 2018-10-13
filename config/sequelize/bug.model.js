@@ -15,7 +15,7 @@ const BugModel = (sequelize, DataTypes) => {
         description: DataTypes.STRING,
         solution: DataTypes.STRING,
         user_mongodb_id: DataTypes.STRING,
-        file: DataTypes.BLOB
+        file: DataTypes.STRING
     });
 
     return Bug;

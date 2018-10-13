@@ -8,7 +8,7 @@ const bugDao = function() {
 
     this.listAll = (id) => {
         winston.info('Dao :: users :: listAll');
-        return sequelize.Bug.findAll({user_mongodb_id: id});
+        return sequelize.Bug.findAll({where: {user_mongodb_id: id}});
     }
 
     /*this.listOne = (id) => {
@@ -27,9 +27,7 @@ const bugDao = function() {
         winston.info('Dao :: bugs :: create');
         return sequelize.Bug.update({
             file: bug.file
-        }, {
-            id: bug.id
-        });
+        }, {where: {id: bug.id}});
     }
 
     /*this.destroy = (id) => {

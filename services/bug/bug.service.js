@@ -11,7 +11,14 @@ const bugService = function() {
 
     this.listAll = (req, res, next) => {
         winston.info('Service :: users :: listAll');
-        this.bugDao.listAll(req.user.id).then(allUsers => res.send(allUsers))
+        this.bugDao.listAll(req.user.id)
+        /*.then(allUserBugs => {
+            allUserBugs.forEach(element => {
+                element.file = element.file ? Buffer.from(element.file).toString('base64') : ''
+            });
+            return allUserBugs;
+        })*/
+        .then(allUserBugs => res.send(allUserBugs))
         .catch(error => res.send(error));
     }
 /*
@@ -29,18 +36,22 @@ const bugService = function() {
             created_at: moment(new Date()),
             user_mongodb_id: req.user.id
         }
+        delete bug.file;
         this.bugDao.create(bug).then((response) => res.send({status: true, id: response.id}))
-        .catch(error => res.send({status: false}));
+        .catch(error => res.send({status: error}));
     }
 
     this.createFile = (req, res, next) => {
         winston.info('Service :: bug :: create');
         const bug = {
-            ...req.body,
-            user_mongodb_id: req.user.id
+            // file: Buffer.from(req.file.buffer).toString('base64'),
+            // file: new Blob([new Uint8Array(req.file.buffer)]),
+            // file: Buffer.from(req.file.buffer),
+            file: req.file.buffer,
+            id: req.body.id
         }
-        this.bugDao.createFile(bug).then(() => res.send({status: true}))
-        .catch(error => res.send({status: false}));
+        this.bugDao.createFile(bug).then((response) => res.send({status: response}))
+        .catch(error => res.send({status: error}));
     }
 
     /*this.destroy = (req, res, next) => {
