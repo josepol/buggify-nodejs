@@ -54,14 +54,14 @@ const bugService = function() {
         .catch(error => res.send({status: error}));
     }
 
-    /*this.destroy = (req, res, next) => {
+    this.destroy = (req, res, next) => {
         winston.info('Service :: users :: destroy', req.params);
         const id = req.params.id;
-        this.userDao.destroy(id).then(() => res.send('OKK'))
+        this.bugDao.destroy(id).then(() => res.send({status: true}))
         .catch(error => res.send(error));
     }
 
-    this.update = (req, res, next) => {
+    /*this.update = (req, res, next) => {
         winston.info('Service :: users :: update', req.params);
         const id = req.params.id;
         const user = {

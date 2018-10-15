@@ -30,14 +30,14 @@ const bugDao = function() {
         }, {where: {id: bug.id}});
     }
 
-    /*this.destroy = (id) => {
+    this.destroy = (id) => {
         winston.info('Dao :: users :: listOne');
-        return sequelize.User.destroy({
+        return sequelize.Bug.destroy({
             where: {id}
         });
     }
 
-    this.update = (id, user) => {
+    /*this.update = (id, user) => {
         winston.info('Dao :: users :: update');
         return sequelize.User.update(user, {
             where: {id}
